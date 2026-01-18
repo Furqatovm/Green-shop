@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+
+@theme{
+  --color-logoColor:#46A358;
+  --color-linkColor:#3D3D3D;
+}
+
+*,html{
+  transition: all 0.3 linear;
+}
