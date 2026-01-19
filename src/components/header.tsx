@@ -2,13 +2,15 @@ import { Link, useLocation } from "react-router-dom"
 import Logo from "../assets/logo"
 import { FiSearch } from "react-icons/fi";
 import { GrNotification } from "react-icons/gr";
+import { useReduxDispatch } from "../hook/useRedux/useredux";
+import { setauthorizationModalVisibility } from "../redux/modal-store";
 
 
 
 
 const Header = () => {
     const {pathname} =useLocation();
-    console.log(pathname)
+    const dispatch =useReduxDispatch();
   return (
     <div className="">
         <header className="w-[90%] border-b border-[#46A35880] py-3  px-2 m-auto flex justify-between items-center">
@@ -16,7 +18,7 @@ const Header = () => {
             <Logo />
         </Link>
 
-        <nav className="flex gap-10 items-center">
+        <nav className="flex gap-10 items-center  max-md:hidden">
             <Link to={"/"} className={`${pathname ==="/" &&"text-logoColor"} font-medium`}>logoColor</Link>
             <Link to={"/"} className={`text-linkColor font-medium`}>logoColor</Link>
             <Link to={"/"} className={`text-linkColor font-medium`}>logoColor</Link>
@@ -34,13 +36,14 @@ const Header = () => {
                 <span className="text-[8px] text-white bg-logoColor p-0.2 w-3 h-3 rounded-full absolute top-0 -right-1 text-center">6</span>
             </span>
 
-            <button className="bg-logoColor text-white text-[1rem] flex gap-2 py-1.5 px-4 hover:opacity-90 rounded-md cursor-pointer items-center font-medium">
+            <button onClick={() => dispatch(setauthorizationModalVisibility())} className="bg-logoColor text-white text-[1rem] flex gap-2 py-1.5 px-4 hover:opacity-90 rounded-md cursor-pointer items-center font-medium">
                     <span className="text-[20px] text-white">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18.1592 10.1006H8.125" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M15.7203 7.67053L18.1603 10.1005L15.7203 12.5305" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M13.6332 6.35823C13.3582 3.3749 12.2415 2.29156 7.79985 2.29156C1.88234 2.29156 1.88234 4.21656 1.88234 9.9999C1.88234 15.7832 1.88234 17.7082 7.79985 17.7082C12.2415 17.7082 13.3582 16.6249 13.6332 13.6416" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                       <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M18.1592 10.1006H8.125" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  <path d="M15.7203 7.67053L18.1603 10.1005L15.7203 12.5305" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  <path d="M13.6332 6.35823C13.3582 3.3749 12.2415 2.29156 7.79985 2.29156C1.88234 2.29156 1.88234 4.21656 1.88234 9.9999C1.88234 15.7832 1.88234 17.7082 7.79985 17.7082C12.2415 17.7082 13.3582 16.6249 13.6332 13.6416" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+</svg>
+
                     </span>
                     Login
             </button>

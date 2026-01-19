@@ -19,7 +19,7 @@ export const useAxios =()=>{
             data:body,
             params:{
                 access_token: "64eecf3b54abde61153d1fd3",
-                ...param
+                ...param,
             }
 
         }).then((res) =>res.data)
