@@ -14,7 +14,7 @@ export const useAxios =()=>{
             url:`${import.meta.env.VITE_BASE_URL}/${url}`,
             method,
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
             data:body,
             params:{

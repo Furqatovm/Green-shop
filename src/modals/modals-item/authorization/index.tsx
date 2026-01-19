@@ -1,4 +1,4 @@
-import {   Input, Modal } from "antd"
+import {    Modal } from "antd"
 import { useReduxDispatch, useReduxSelector } from "../../../hook/useRedux/useredux"
 import { setauthorizationModalVisibility } from "../../../redux/modal-store"
 import { useState } from "react";
@@ -13,8 +13,8 @@ const AuthorizationModal = () => {
 
     const {authorizationModalVisibility} =useReduxSelector(state=> state.modalSlice)
   return (
-    <Modal open={authorizationModalVisibility} footer={false} onCancel={() =>dispatch(setauthorizationModalVisibility())}>
-       <div className="w-[70%] m-auto py-6">
+    <Modal open={authorizationModalVisibility} centered footer={false}  onCancel={() =>dispatch(setauthorizationModalVisibility())}>
+       <div className="w-[75%] m-auto my-auto">
         <div className="flex gap-5 items-center justify-center mb-8"> 
             <span onClick={() =>setState("login")} className={`text-[20px] font-medium  cursor-pointer ${state ==="login" ? "text-logoColor" :"text-linkColor"} font-medium`}>Login</span>
             <div className="w-px h-4 bg-linkColor"></div>
