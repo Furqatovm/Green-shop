@@ -1,6 +1,7 @@
 import { ConfigProvider, Form, Input, Spin } from "antd"
-import { useLoginMutation } from "../../../hook/useQuery/useQueryAction"
+import { useLoginMutation, useLoginWithGoogle } from "../../../hook/useQuery/useQueryAction"
 import { LoadingOutlined } from "@ant-design/icons";
+
 
 
 const Login = () => {
@@ -9,7 +10,7 @@ const Login = () => {
     const login =(e:{email:string,password:string}) =>{
         mutate(e)
     }
-
+    const {mutate:loginWithGoogle, isPending:googlePending} =useLoginWithGoogle()
     const antIcon = <LoadingOutlined style={{ fontSize: 20, color: "#FFFFFF" }} spin />;
   return (
     <ConfigProvider theme={{components:{Input:{activeBorderColor:"#46A358", hoverBorderColor:"#46A358"}}}} >
@@ -26,7 +27,7 @@ const Login = () => {
 
             <span className="text-logoColor text-end">Forgot Password?</span>
 
-            <button className="py-2.5 px-4!  text-white cursor-pointer hover:opacity-85 bg-logoColor rounded-[5px] ">{isPending ? <Spin indicator={antIcon} />: "Login"}</button>
+            <button type="submit" className="py-2.5 px-4!  text-white cursor-pointer hover:opacity-85 bg-logoColor rounded-[5px] ">{isPending ? <Spin indicator={antIcon} />: "Login"}</button>
         </div>
 
 
@@ -36,8 +37,8 @@ const Login = () => {
             <div className="flex-1 h-0.5 bg-[#EAEAEA] "></div>
         </div>
 
-        <div className="flex flex-col gap-5">
-        <button className="py-2.5 px-4!  text-[#727272] cursor-pointer hover:opacity-85 bg-transparent flex gap-2 items-center justify-center w-full border border-[#EAEAEA]  rounded-[5px] ">
+        <div   className="flex flex-col gap-5">
+        <button type="button" onClick={() =>loginWithGoogle()} className="py-2.5 px-4!  text-[#727272] cursor-pointer hover:opacity-85 bg-transparent flex gap-2 items-center justify-center w-full border border-[#EAEAEA]  rounded-[5px] ">
       <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g clipPath="url(#clip0_9_990)">
     <path d="M16.4336 17.6055C14.6992 19.0703 12.4493 20 10 20C6.35547 20 3.15621 17.9922 1.42188 15.0625L2.07117 12.0695L4.94922 11.5352C5.61719 13.6914 7.63278 15.2734 10 15.2734C11.1484 15.2734 12.2148 14.9102 13.0938 14.2656L15.8594 14.6875L16.4336 17.6055Z" fill="#59C36A" />
@@ -54,12 +55,12 @@ const Login = () => {
     </clipPath>
   </defs>
 </svg>
-Login with Google 
+{googlePending ? <Spin indicator={antIcon} /> : "Login with Google "}
 
         </button>
 
 
-        <button className="py-2.5 px-4!  text-[#727272] cursor-pointer hover:opacity-85 bg-transparent flex gap-2 items-center justify-center w-full border border-[#EAEAEA]  rounded-[5px] ">
+        <button  className="py-2.5 px-4!  text-[#727272] cursor-pointer hover:opacity-85 bg-transparent flex gap-2 items-center justify-center w-full border border-[#EAEAEA]  rounded-[5px] ">
         <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g clipPath="url(#clip0_9_1018)">
     <path d="M13.3308 3.32083H15.1566V0.140826C14.8416 0.0974924 13.7583 -7.62939e-06 12.4966 -7.62939e-06C6.71993 -7.62939e-06 8.2916 6.54166 8.0616 7.49999H5.15576V11.055H8.06076V20H11.6224V11.0558H14.4099L14.8524 7.50083H11.6216C11.7783 5.14749 10.9874 3.32083 13.3308 3.32083Z" fill="#3B5999" />

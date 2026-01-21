@@ -1,9 +1,14 @@
 import type React from "react"
+import Header from "../components/header"
+import { Outlet } from "react-router-dom"
 
-const Layout = ({children}:{children:React.ReactNode}) => {
+const Layout:React.FC = () => {
   return (
     <div>
-        {children}
+      <Header />
+      <main>
+        <Outlet />
+      </main>
     </div>
   )
 }

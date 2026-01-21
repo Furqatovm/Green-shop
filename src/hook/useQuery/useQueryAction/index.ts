@@ -1,9 +1,16 @@
 import { useMutation } from "@tanstack/react-query"
 import { useAxios } from "../../useAxios/axios"
 import toast from "react-hot-toast";
+import { useReduxDispatch } from "../../useRedux/useredux";
+import { setauthorizationModalVisibility } from "../../../redux/modal-store";
+import Cookies from "js-cookie";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../../firebase/firebase";
+
 
 
 export  const useLoginMutation =() =>{
+    const dispatch =useReduxDispatch();
     const axios =useAxios();
     return useMutation({
         mutationKey:["login"],
@@ -12,6 +19,10 @@ export  const useLoginMutation =() =>{
             console.log(data);
             if(data.message ==="success"){
                 toast.success("Login muvaffaqiyatli bo'ldi");
+                dispatch(setauthorizationModalVisibility());
+                Cookies.set("user", JSON.stringify(data.data.user))
+                Cookies.set("token", data.data.token)
+                
             } else{
                 toast.error("Login muvaffaqiyatsiz bo'ldi");
             }
@@ -22,6 +33,8 @@ export  const useLoginMutation =() =>{
 
 
 export const useRegisterMutation =() =>{
+    const dispatch =useReduxDispatch();
+
     const axios =useAxios();
 
     return useMutation({
@@ -31,6 +44,7 @@ export const useRegisterMutation =() =>{
             console.log(data2)
             if(data2.message ==="success"){
                 toast.success("Login muvaffaqiyatli bo'ldi");
+                dispatch(setauthorizationModalVisibility())
                 
             } else{
                 toast.error("Login muvaffaqiyatsiz bo'ldi");
@@ -38,4 +52,48 @@ export const useRegisterMutation =() =>{
         },
         onError:(error) =>console.log(error)
     })
+}
+
+
+export const useLoginWithGoogle =() =>{
+   const dispatch =useReduxDispatch();
+   const axios =useAxios();
+
+   return useMutation({
+    mutationKey:["login-with-google"],
+    mutationFn:async () =>{
+        const provider =new GoogleAuthProvider();
+        const res =await signInWithPopup(auth, provider);
+        const email = res.user.email; 
+
+        if(!email){
+            throw new Error("Ma'lumot topilmadi")
+        }
+
+
+        return axios ({
+            url:"user/sign-in/google",
+            method:"POST",
+            body:{email}
+        })
+
+    },
+    onSuccess:(data) =>{
+        console.log(data);
+        if(data?.message ==="success"){
+            toast.success("Login muvaffaqiyatli bo'ldi");
+            dispatch(setauthorizationModalVisibility());
+            Cookies.set("user", JSON.stringify(data.data.user))
+            Cookies.set("token", data.data.token)
+            
+        } else{
+            toast.error("Login muvaffaqiyatsiz bo'ldi");
+        }
+       
+    },
+    onError:(error) =>{
+        throw error
+    }
+   })
+
 }
