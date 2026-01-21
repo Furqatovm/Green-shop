@@ -1,6 +1,7 @@
 import { Button, Select, Slider } from "antd"
 import textImage from "../assets/images/textImg.png"
-import img2 from "../assets/images/rasm2.png";
+import img2 from "../assets/images/img.png";
+import Card from "./card";
 
 const FilterPage = () => {
     const selectStyle ={
@@ -113,7 +114,7 @@ const FilterPage = () => {
                 <div className="bg-linear-to-b from-[#46A3581A] to-[##46A35808] mt-8">
                     <img src={textImage} className="w-full px-5" alt="" />
                     <span className="uppercase text-[23px] font-black text-linkColor text-center block py-2">up to 75% off</span>
-                    <img src={img2} alt="" />
+                    <img src={img2} className="w-full" alt="" />
                 </div>
 
 
@@ -151,7 +152,21 @@ const FilterPage = () => {
 
             </div>
 
+                  {/* Manashu joyidan rasmlar boshlanadi */}
+
+           <div className="grid grid-cols-3 gap-10 my-5 ">
+           {Array.from({ length: 9 }).map((_, index) => (
+        <Card key={index}  />
+      ))}
+
         </div>
+
+
+        </div>
+
+
+     
+     
     </div>
   )
 }
