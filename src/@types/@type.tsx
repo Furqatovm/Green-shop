@@ -12,3 +12,15 @@ export const ButtonStyle ={
     fontWeight:"700",
     padding:"20px 30px"
 }
+
+
+export interface Category {
+    _id: string
+    title: string
+    route_path: string
+    count: number
+    created_at: string
+    created_by: string
+    __v: number
+  }
+  

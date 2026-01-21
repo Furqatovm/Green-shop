@@ -3,7 +3,9 @@ import textImage from "../assets/images/textImg.png"
 import img2 from "../assets/images/img.png";
 import Card from "./card";
 import MyPagination from "./pagination";
-import { ButtonStyle } from "../@types/@type";
+import { ButtonStyle, type Category } from "../@types/@type";
+import { useState } from "react";
+import { useQueryHandler } from "../hook/useQuery/usequery";
 
 const FilterPage = () => {
     const selectStyle ={
@@ -24,6 +26,14 @@ const FilterPage = () => {
         }
     }
 
+    const [sliderValue, setSliderValue] =useState<number[]>([0, 1000]);
+
+    const { data, isLoading, isError, error } = useQueryHandler({
+        url: "flower/category",
+        pathname: "get-by-category"
+      })
+
+      console.log(data)
   
   return (
     <section>
@@ -32,58 +42,21 @@ const FilterPage = () => {
         <div className="w-77.5 h-auto bg-[#FBFBFB] ">
             <span className="text-linkColor text-filterText font-bold p-5 block">Category</span>
             <div className="px-7  flex flex-col gap-5">
-                <span className="text-filterChildren  text-linkColor flex justify-between items-center">
-                    <p>House Plants</p>
-                    <span>(33)</span>
+                {data?.data?.map((val:Category) =>{
+                    return (
+                        <span key={val._id} className="text-filterChildren  text-linkColor flex justify-between items-center">
+                    <p>{val.title}</p>
+                    <span>({val.count})</span>
                 </span>
-
-                <span className="text-filterChildren  text-linkColor flex justify-between items-center">
-                    <p>Potter Plants</p>
-                    <span>(33)</span>
-                </span>
-
-                <span className="text-filterChildren  text-linkColor flex justify-between items-center">
-                    <p>Seeds</p>
-                    <span>(33)</span>
-                </span>
-
-                <span className="text-filterChildren  text-linkColor flex justify-between items-center">
-                    <p>Small Plants</p>
-                    <span>(33)</span>
-                </span>
-
-                <span className="text-filterChildren  text-linkColor flex justify-between items-center">
-                    <p>Big Plants</p>
-                    <span>(33)</span>
-                </span>
-
-                <span className="text-filterChildren  text-linkColor flex justify-between items-center">
-                    <p>Succulents</p>
-                    <span>(33)</span>
-                </span>
-
-                <span className="text-filterChildren  text-linkColor flex justify-between items-center">
-                    <p>Trerrariums</p>
-                    <span>(33)</span>
-                </span>
-
-                <span className="text-filterChildren  text-linkColor flex justify-between items-center">
-                    <p>Gardening</p>
-                    <span>(33)</span>
-                </span>
-
-
-                <span className="text-filterChildren  text-linkColor flex justify-between items-center">
-                    <p>Accessories</p>
-                    <span>(33)</span>
-                </span>
+                    )
+                })}
             </div>
 
             <span className="text-linkColor text-filterText font-bold block p-5">Category</span>
 
             <div className="text-filterChildren text-linkColor flex flex-col gap-3 px-7">
-            <Slider range={{ draggableTrack: true }} defaultValue={[20, 50]} styles={sliderStyle} />
-            <p>Price: <span className="text-logoColor font-bold">$39 - $1230</span></p>
+            <Slider range={{ draggableTrack: true }} defaultValue={sliderValue} onChange={(e:number[]) =>setSliderValue(e)} max={1000} min={0} styles={sliderStyle} />
+            <p>Price: <span className="text-logoColor font-bold">${sliderValue[0]} - ${sliderValue[1]}</span></p>
             <div>
                 <Button style={ButtonStyle}>Filter</Button>
             </div>
