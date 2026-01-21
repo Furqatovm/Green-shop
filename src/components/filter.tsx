@@ -2,6 +2,7 @@ import { Button, Select, Slider } from "antd"
 import textImage from "../assets/images/textImg.png"
 import img2 from "../assets/images/img.png";
 import Card from "./card";
+import MyPagination from "./pagination";
 
 const FilterPage = () => {
     const selectStyle ={
@@ -30,6 +31,8 @@ const FilterPage = () => {
         padding:"9px 20px"
     }
   return (
+    <section>
+
     <div className="my-10  flex gap-13">
         <div className="w-77.5 h-auto bg-[#FBFBFB] ">
             <span className="text-linkColor text-filterText font-bold p-5 block">Category</span>
@@ -121,7 +124,7 @@ const FilterPage = () => {
 
 
         </div>
-        <div className="flex-1">
+        <div className="flex-1 transition-none!">
 
             <div className="flex justify-between items-center">
 
@@ -165,9 +168,14 @@ const FilterPage = () => {
         </div>
 
 
-     
+
+ 
      
     </div>
+    <div className="flex items-end justify-end">
+<MyPagination />
+</div>    
+    </section>
   )
 }
 

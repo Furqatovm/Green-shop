@@ -5,8 +5,6 @@ import type { PaginationProps } from 'antd';
 const MyPagination: React.FC = () => {
   const paginationSharedProps: PaginationProps = {
     total: 100,
-    size: "small",
-    style: { border: "1px solid #E5E5E5", padding: 8 },
   };
 
   const styleFn: PaginationProps['styles'] = () => ({
