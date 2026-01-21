@@ -3,6 +3,7 @@ import textImage from "../assets/images/textImg.png"
 import img2 from "../assets/images/img.png";
 import Card from "./card";
 import MyPagination from "./pagination";
+import { ButtonStyle } from "../@types/@type";
 
 const FilterPage = () => {
     const selectStyle ={
@@ -23,13 +24,7 @@ const FilterPage = () => {
         }
     }
 
-    const ButtonStyle ={
-        backgroundColor: '#46A358',
-        color: '#fff',             
-        borderColor: '#46A358',  
-        fontWeight:"700",
-        padding:"9px 20px"
-    }
+  
   return (
     <section>
 

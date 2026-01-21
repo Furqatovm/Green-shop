@@ -7,6 +7,8 @@ import { setauthorizationModalVisibility } from "../redux/modal-store";
 import Cookies from "js-cookie"
 import { Button } from "antd";
 import { useEffect, useState } from "react";
+import { CgProfile } from "react-icons/cg";
+
 
 
 
@@ -48,7 +50,9 @@ const Header = () => {
                 <span className="text-[8px] text-white bg-logoColor p-0.2 w-3 h-3 rounded-full absolute top-0 -right-1 text-center">6</span>
             </span>
 
-           {userInfo ? <Button>{userInfo.name}</Button> :
+           {userInfo ? <Link to={"/profile"} className="cursor-pointer text-[26px]">
+            <CgProfile />
+           </Link> :
             <button onClick={() => dispatch(setauthorizationModalVisibility())} className="bg-logoColor text-white text-[1rem] flex gap-2 py-1.5 px-4 hover:opacity-90 rounded-md cursor-pointer items-center font-medium">
             <span className="text-[20px] text-white">
                <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

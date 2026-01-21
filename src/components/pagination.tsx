@@ -5,6 +5,7 @@ import type { PaginationProps } from 'antd';
 const MyPagination: React.FC = () => {
   const paginationSharedProps: PaginationProps = {
     total: 100,
+    showSizeChanger:false
   };
 
   const styleFn: PaginationProps['styles'] = () => ({
@@ -23,7 +24,7 @@ const MyPagination: React.FC = () => {
   });
 
   return (
-    <Space direction="vertical" size="middle">
+    <Space orientation="vertical" size="middle">
       <Pagination {...paginationSharedProps} styles={styleFn} />
     </Space>
   );

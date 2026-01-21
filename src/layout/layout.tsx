@@ -6,7 +6,7 @@ const Layout:React.FC = () => {
   return (
     <div>
       <Header />
-      <main>
+      <main className="w-[90%] mx-auto">
         <Outlet />
       </main>
     </div>
