@@ -7,7 +7,7 @@ const Card = () => {
 const [hovered, setHovered] =useState<boolean>(false);
   return (
           <div>
-                <div className="relative bg-[#FBFBFB] flex flex-col  items-center justify-center overflow-hidden" 
+                <div className="relative bg-[#FBFBFB] flex flex-col  items-center justify-center overflow-hidden " 
                 onMouseEnter={()=>setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
                 >

@@ -9,9 +9,9 @@ const LastCard = ({information}:any) => {
     console.log(information)
 
     return (
-    <div className="flex gap-4 items-center relative bg-[#FBFBFB] p-8">
-        <div>
-            <img src={information.img}alt="" />
+    <div className="flex justify-between items-center relative bg-[#FBFBFB] p-8">
+        <div className="w-[65%]">
+            <img src={information.img}  className="w-full" alt="" />
             <div className="absolute bottom-0 left-0 flex">
             <img src={yashil} alt="" />
             </div>

@@ -3,6 +3,9 @@ import Blog from "../pages/blog/blog";
 import Layout from "../layout/layout";
 import Home from "../pages/home/home";
 import Profile from "../pages/profile/profile";
+import Cookies from "js-cookie"
+
+const user =Cookies.get("token")
 
 export const router =createBrowserRouter([
     {
