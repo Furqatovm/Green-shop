@@ -9,4 +9,6 @@
 @theme{
   --color-logoColor:#46A358;
   --color-linkColor:#3D3D3D;
+  --text-filterText:18px;
+  --text-filterChildren:15px;
 }
