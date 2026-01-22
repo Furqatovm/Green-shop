@@ -24,3 +24,32 @@ export interface Category {
     __v: number
   }
   
+
+  export interface DiscountedItem {
+    id: number;
+    title: string;
+    discoount_up_to: number;
+    poster_image_url: string;
+  }
+
+
+  export interface ProductItem {
+    _id: string;
+    title: string;
+    description: string;
+    short_description: string;
+    category: string;
+    price: number;
+    discount: boolean;
+    discount_price: string;
+    main_image: string;
+    detailed_images: string[];
+    rate: number;
+    sold_times: number;
+    views: number;
+    tags: string[];
+    comments: string[]; 
+    created_by: string;
+    created_at: string; 
+    __v: number;
+  }

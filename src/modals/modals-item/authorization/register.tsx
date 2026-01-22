@@ -13,7 +13,6 @@ const Register = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 20, color: "#FFFFFF" }} spin />;
     const [password, setPassword] =useState<string>("");
     const [checkingPasword, setCheckingPassword] =useState<string>("");
-    console.log(password)
   return (
     <ConfigProvider theme={{components:{Input:{activeBorderColor:"#46A358", hoverBorderColor:"#46A358"}}}} >
     <Form  onFinish={(values)=>{

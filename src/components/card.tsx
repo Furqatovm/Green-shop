@@ -1,17 +1,19 @@
 import  { useState } from 'react'
-import rasm2 from "../assets/images/img2.png"
+import type { ProductItem } from '../@types/@type';
 
 
 
-const Card = () => {
+const Card = ({main_image, price, title}:ProductItem) => {
 const [hovered, setHovered] =useState<boolean>(false);
   return (
           <div>
-                <div className="relative bg-[#FBFBFB] flex flex-col  items-center justify-center overflow-hidden " 
+                <div className="relative bg-[#FBFBFB] flex flex-col  items-center justify-center overflow-hidden rounded-sm " 
                 onMouseEnter={()=>setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
                 >
-                    <img src={rasm2} className="" alt="" />
+                   <div className='h-75 p-4 overflow-hidden'>
+                   <img src={main_image} className="object-cover w-full hover: transition-transform duration-300 ease-in-out transform hover:scale-105 cursor-pointer " alt="" />
+                   </div>
                 <div className={`gap-2 transform transition-transform duration-300 ease-in-out ${hovered ? "-translate-y-5" : "translate-y-10"} flex `}>
                     <div className="p-1 bg-white rounded-sm cursor-pointer">
                         <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,8 +40,8 @@ const [hovered, setHovered] =useState<boolean>(false);
                     </div>
 
                 </div>
-                <span className="block mt-3 text-[1rem] text-linkColor">Barberton Daisy</span>
-                <span className="text-filterText font-bold text-logoColor">$119.00</span>
+                <span className="block mt-3 text-[1rem] text-linkColor">{title}</span>
+                <span className="text-filterText font-bold text-logoColor">${price}</span>
             </div>
   )
 }

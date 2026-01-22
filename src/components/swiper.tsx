@@ -17,7 +17,6 @@ const MySwiper=()  => {
     modules={[Autoplay, Pagination, Navigation]}
       spaceBetween={50}
       slidesPerView={1}
-      onSwiper={(swiper) => console.log(swiper)}
       autoplay={{ delay: 2000, disableOnInteraction: false }} // auto slide every 5s
       pagination={{ clickable: true, type: 'bullets',}} // round dots
       loop={true}

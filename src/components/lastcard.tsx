@@ -6,7 +6,6 @@ import yashil from "../assets/images/yashil.png"
 
 
 const LastCard = ({information}:any) => {
-    console.log(information)
 
     return (
     <div className="flex justify-between items-center relative bg-[#FBFBFB] p-8">
