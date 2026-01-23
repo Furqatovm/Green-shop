@@ -8,12 +8,11 @@ import yashil from "../assets/images/yashil.png"
 const LastCard = ({information}:any) => {
 
     return (
-    <div className="flex justify-between items-center relative bg-[#FBFBFB] p-8">
+    <div className="flex justify-between items-center relative bg-[#FBFBFB] px-8 py-4 border border-gray-200 rounded-lg overflow-hidden">
         <div className="w-[65%]">
             <img src={information.img}  className="w-full" alt="" />
-            <div className="absolute bottom-0 left-0 flex">
-            <img src={yashil} alt="" />
-            </div>
+            <img src={yashil} className="absolute left-0 bottom-0" alt="" />
+            <img src={yashil} className="absolute left-0 translate-y-2 bottom-0"  alt="" />
         </div>
         <div className="right flex flex-col gap-4">
             <h3 className="text-[1.5rem] font-bold text-end">
