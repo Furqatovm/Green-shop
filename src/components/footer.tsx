@@ -59,7 +59,7 @@ const Footer = () => {
             </div>
         </div>
 
-        <div className="grid grid-cols-5 gap-10 bg-[#edf6ef] p-6">
+        <div className="grid grid-cols-4 justify-between gap-10 bg-[#edf6ef] p-6">
             <div>
                 <Logo />
             </div>
@@ -103,9 +103,7 @@ const Footer = () => {
                 </p>
             </div>
 
-            <div>
 
-            </div>
 
         </div>
 
