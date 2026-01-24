@@ -3,11 +3,20 @@ import Footerimg1 from "../assets/images/footerimg1.png"
 import { ButtonStyle, inputStyle } from "../@types/@type"
 import Logo from "../assets/logo"
 
+import Facebook from "../assets/icons/Facebook.png"
+import Instagram from "../assets/icons/Instagram.png"
+import Linkedin from "../assets/icons/Linkedin.png"
+import Twitter from "../assets/icons/Twitter.png"
+import Union from "../assets/icons/Union.png"
+
+import Payment from "../assets/images/payment.png"
+
+
 
 const Footer = () => {
   return (
-    <footer className="bg-[#FBFBFB] w-[90%] mx-auto px-2">
-        <div className="p-4  flex justify-between items-center">
+    <footer className="bg-[#FBFBFB] w-[90%] mx-auto ">
+        <div className="p-4  flex justify-between items-center px-4">
             <div className="w-[65%] flex justify-between items-center">
                 <div className="flex flex-col gap-2">
                     <div>
@@ -103,8 +112,62 @@ const Footer = () => {
 
 
 
-        <div>
-            
+        <div className="grid grid-cols-4 p-5 pt-8">
+            <div className="flex flex-col gap-2">
+                <span className="text-linkColor text-filterChildren font-bold">My Account</span>
+                <span className="text-linkColor text-blog-text-children block">My Account</span>
+                <span className="text-linkColor text-blog-text-children block">Our stores</span>
+                <span className="text-linkColor text-blog-text-children block">Contact us</span>
+                <span className="text-linkColor text-blog-text-children block">Career</span>
+                <span className="text-linkColor text-blog-text-children block">Specials</span>
+            </div>
+
+
+            <div className="flex flex-col gap-2">
+                <span className="text-linkColor text-filterChildren font-bold">My Account</span>
+                <span className="text-linkColor text-blog-text-children block">My Account</span>
+                <span className="text-linkColor text-blog-text-children block">Our stores</span>
+                <span className="text-linkColor text-blog-text-children block">Contact us</span>
+                <span className="text-linkColor text-blog-text-children block">Career</span>
+                <span className="text-linkColor text-blog-text-children block">Specials</span>
+            </div>
+
+
+            <div className="flex flex-col gap-2">
+                <span className="text-linkColor text-filterChildren font-bold">My Account</span>
+                <span className="text-linkColor text-blog-text-children block">My Account</span>
+                <span className="text-linkColor text-blog-text-children block">Our stores</span>
+                <span className="text-linkColor text-blog-text-children block">Contact us</span>
+                <span className="text-linkColor text-blog-text-children block">Career</span>
+                <span className="text-linkColor text-blog-text-children block">Specials</span>
+            </div>
+
+            <div className="w-[70%] flex flex-col gap-2">
+            <span className="text-linkColor text-filterChildren font-bold">My Account</span>
+                <div className="grid grid-cols-5 gap-2">
+                    <button className="p-2 flex items-center justify-center bg-transparent border border-[#46A35833] rounded-sm">
+                        <img src={Facebook} alt="facebook icon" />
+                    </button>
+                    <button className="p-2 flex items-center justify-center bg-transparent border border-[#46A35833] rounded-sm">
+                        <img src={Instagram} alt="facebook icon" />
+                    </button>
+                    <button className="p-2 flex items-center justify-center bg-transparent border border-[#46A35833] rounded-sm">
+                        <img src={Twitter} alt="facebook icon" />
+                    </button>
+                    <button className="p-2 flex items-center justify-center  bg-transparent border border-[#46A35833] rounded-sm">
+                        <img src={Linkedin} alt="facebook icon" />
+                    </button>
+                    <button className="p-2 flex items-center justify-center  bg-transparent border border-[#46A35833] rounded-sm">
+                        <img src={Union} alt="facebook icon" />
+                    </button>
+                </div>
+
+            <span className="text-linkColor text-filterChildren font-bold mt-4">My Account</span>
+                <div>
+                    <img src={Payment} alt="" />
+                </div>
+            </div>
+
         </div>
     </footer>
   )

@@ -26,3 +26,5 @@ export const blogs =[
         description:"Cacti are succulents are easy care plants for any home or patio. ",
     }
 ]
+
+
