@@ -14,6 +14,11 @@ export const ButtonStyle ={
 }
 
 
+export const inputStyle ={
+  borderColor: '#46A358',  
+}
+
+
 export interface Category {
     _id: string
     title: string
@@ -52,4 +57,12 @@ export interface Category {
     created_by: string;
     created_at: string; 
     __v: number;
+  }
+
+
+  export interface PrototypeDataType {
+    img:string;
+    created_at:string,
+    title:string,
+    description:string,
   }

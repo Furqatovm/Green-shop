@@ -1,9 +1,17 @@
-import { Button, Card } from "antd";
+import { Button } from "antd";
 import People from "../../assets/images/people.png";
 import { ButtonStyle } from "../../@types/@type";
 import BlogChild from "./blogChild";
+import { useQueryHandler } from "../../hook/useQuery/usequery";
 
 const Blog = () => {
+
+  const {data} =useQueryHandler({
+    url:"user/blog",
+    pathname:"blog",
+  })
+
+  console.log(data)
   return (
     <div className="px-2">
       <div className="bg-[#f5f5f5] p-4 rounded-2xl my-5">
@@ -28,6 +36,7 @@ const Blog = () => {
             })
           }
       </section>
+      
 
       
     </div>

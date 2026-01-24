@@ -1,6 +1,7 @@
 import FilterPage from "../../components/filter"
 import Last from "../../components/last"
 import MySwiper from "../../components/swiper"
+import HomeBlog from "../homeblog/homeblog"
 
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
       </div>
       <FilterPage />
       <Last />
+      <HomeBlog />
     </div>
   )
 }

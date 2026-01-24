@@ -1,6 +1,7 @@
 import type React from "react"
 import Header from "../components/header"
 import { Outlet } from "react-router-dom"
+import Footer from "../components/footer"
 
 const Layout:React.FC = () => {
   return (
@@ -11,6 +12,9 @@ const Layout:React.FC = () => {
       <main className="w-[90%] mx-auto">
         <Outlet />
       </main>
+      <div>
+      <Footer />
+      </div>
     </div>
   )
 }

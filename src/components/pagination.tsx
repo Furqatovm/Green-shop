@@ -5,27 +5,30 @@ import type { PaginationProps } from 'antd';
 const MyPagination: React.FC = () => {
   const paginationSharedProps: PaginationProps = {
     total: 100,
-    showSizeChanger:false
+    showSizeChanger:false,
+    
   };
 
-  const styleFn: PaginationProps['styles'] = () => ({
-    item: {
-      backgroundColor: "transparent",
-      border: "1px solid #E5E5E5",
-      marginInlineEnd: 4,
-      borderRadius: 4,
-      color: "#000", 
-    },
-    itemActive: {
-      backgroundColor: "#46A358", 
-      borderColor: "#46A358",
-      color: "#fff",
-    },
-  });
+  // const styleFn: PaginationProps['styles'] = () => ({
+  //   item: {
+  //     backgroundColor: "transparent",
+  //     border: "1px solid #E5E5E5",
+  //     marginInlineEnd: 4,
+  //     borderRadius: 4,
+  //     color: "#000", 
+  //   },
+  //   itemActive: {
+  //     backgroundColor: "#46A358", 
+  //     borderColor: "#46A358",
+  //     color: "#fff",
+  //   },
+  // });
 
   return (
-    <Space orientation="vertical" size="middle">
-      <Pagination {...paginationSharedProps} styles={styleFn} />
+    <Space  orientation="vertical" size="middle">
+      <Pagination  {...paginationSharedProps} 
+      
+       />
     </Space>
   );
 };
