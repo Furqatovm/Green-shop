@@ -11,7 +11,7 @@ interface QueryHandlerType {
 export const useQueryHandler =({url, pathname, param}:QueryHandlerType) =>{
     const axios =useAxios();
     return useQuery({
-        queryKey:[pathname, param, url],
+        queryKey:[`${pathname}`],
         queryFn:() =>axios({url, param})
     })
 }

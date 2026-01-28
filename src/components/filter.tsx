@@ -7,8 +7,11 @@ import { useQueryHandler } from "../hook/useQuery/usequery";
 import FilterSkeleton from "../genetics/filterSkeleton/filterSkeleton";
 import DiscountedProduct from "./discount/discount";
 import ImageSkeleton from "../genetics/imageSkeleton/image";
+import { useSearchParamsHandler } from "../hook/paramsApi";
+import { product_titles } from "../utils/prototypeData";
 
 const FilterPage = () => {
+    const {getParam, setParam} =useSearchParamsHandler()
     const selectStyle ={
         borderColor: 'transparent',
     boxShadow: 'none',          
@@ -28,31 +31,39 @@ const FilterPage = () => {
     }
 
     const [sliderValue, setSliderValue] =useState<number[]>([0, 1000]);
-    const [category, setCategory] =useState<string>("house-plants")
-    const [type, setType] =useState<"all"|"new-arrivals"|"sale">("all");
-    const [sorting, setSorting] =useState<string>("default")
+
+
+    const category =getParam("category")||"house-plants";
+    const range_min =getParam("range_min")||0;
+    const range_max =getParam("range_max") ||100
+    const type =getParam("type")||"all-plants";
+    const sort =getParam("sort") ||"default-sorting"
+    const changed =(e:string) =>{
+        setParam({category, range_min, range_max, type, sort:e})
+    }
 
     const { data, isPending, isError } = useQueryHandler({
         url: `flower/category`,
-        pathname: "get-by-category"
+        pathname: "get-by-category",
       })
 
 
       const {data:data2, isPending:isPeding2, isLoading:isLoading2, isError:isError2 } =useQueryHandler({
         url:`flower/category/${category}`,
-        pathname: `get-by-category-filter`,
+        pathname: `products-${category}-${range_min}-${range_max}-${type}-${sort}`,
         param:{
+            range_min,
+            range_max,
             type,
-            sort:sorting,
-            range_min:sliderValue[0],
-            range_max:sliderValue[1]
+            sort
         }
       })
+
+      console.log(getParam("category"))
  
 
 
       
-      console.log(type)
   
   return (
     <section>
@@ -65,11 +76,8 @@ const FilterPage = () => {
                 <FilterSkeleton />
                 :
                 data?.data?.map((val:Category) =>{
-                    console.log(val)
                     return (
-                        <span onClick={() =>
-                            setCategory(val.route_path)
-                        }  key={val._id} className="text-filterChildren  hover:text-logoColor cursor-pointer  font-medium text-linkColor flex justify-between items-center">
+                        <span onClick={() => setParam({category:val.route_path, range_min, range_max})} key={val._id} className={`text-filterChildren  hover:text-logoColor cursor-pointer  font-medium text-linkColor flex justify-between items-center ${category ===val.route_path && "text-logoColor"}`}>
                     <p>{val.title}</p>
                     <span>({val.count})</span>
                 </span>
@@ -84,7 +92,7 @@ const FilterPage = () => {
             <Slider range={{ draggableTrack: true }} defaultValue={sliderValue} onChange={(e:number[]) =>setSliderValue(e)} max={1000} min={0} styles={sliderStyle} />
             <p>Price: <span className="text-logoColor font-bold">${sliderValue[0]} - ${sliderValue[1]}</span></p>
             <div>
-                <Button style={ButtonStyle}>Filter</Button>
+                <Button style={ButtonStyle} onClick={() =>setParam({category,range_min:sliderValue[0], range_max:sliderValue[1]})} className="w-full!">Filter</Button>
             </div>
             </div>
 
@@ -99,22 +107,21 @@ const FilterPage = () => {
             <div className="flex justify-between items-center">
 
                 <div className="flex gap-10">
-                    <span className={`text-filterChildren hover:text-logoColor font-medium cursor-pointer ${type =="all" ? "text-logoColor":"text-linkColor"}`} onClick={() =>setType("all")} defaultValue={"all"}>All Plants</span>
-                    <span className={`text-filterChildren hover:text-logoColor font-medium cursor-pointer ${type =="new-arrivals" ? "text-logoColor":"text-linkColor"}`} onClick={() =>setType("new-arrivals")} defaultValue={"new-arrivals"}>New Arrivals</span>
-                    <span className={`text-filterChildren hover:text-logoColor font-medium cursor-pointer ${type =="sale" ? "text-logoColor":"text-linkColor"}`} onClick={() =>setType("sale")} defaultValue={"sale"}>Sale</span>
+                    {product_titles.map((val) => {
+                        return   <span key={val.id} onClick={()=>setParam({category, range_min, range_max, type:val.route_path})} className={`text-filterChildren hover:text-logoColor font-medium cursor-pointer ${type ==val.route_path && "text-logoColor"}`} >{val.title}</span>
+                    })}
                 </div>
 
                 <div>
                     <span>Sort by:</span>
 
-  <Select onChange={(e) => setSorting(e)}
+  <Select onChange={changed}
     placeholder="Select an option"
-    value={sorting}
     defaultValue={"default sorting"}
     options={[
-      { value: 'cheapest', label: 'The Cheapest', },
-      { value: 'expensive', label: 'The most expensive', },
-      { value: 'default', label: 'Default sorting', },
+      { value: 'the-cheapest', label: 'The Cheapest', },
+      { value: 'most-expensive', label: 'The most expensive', },
+      { value: 'default-sorting', label: 'Default sorting', },
     ]}
     style={selectStyle}
   />
@@ -132,6 +139,7 @@ const FilterPage = () => {
                 return <ImageSkeleton key={index}/>
             })
             :
+            data2?.data.length ==0 ? "bunday ma'lumot topilmadi" :
             data2?.data.map((val:ProductItem) =>{
                 return   <Card  key={val._id} {...val}/>
                })

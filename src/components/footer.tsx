@@ -15,7 +15,8 @@ import Payment from "../assets/images/payment.png"
 
 const Footer = () => {
   return (
-    <footer className="bg-[#FBFBFB] w-[90%] mx-auto ">
+   <div>
+     <footer className="bg-[#FBFBFB] w-[90%] mx-auto mt-30">
         <div className="p-4  flex justify-between items-center px-4">
             <div className="w-[65%] flex justify-between items-center">
                 <div className="flex flex-col gap-2">
@@ -50,7 +51,7 @@ const Footer = () => {
             <div className="w-[28%] flex flex-col gap-4">
                 <h4 className="text-linkColor text-filterText font-bold">Would you like to join newsletters?</h4>
                 <Space.Compact style={{ width: '100%' }}>
-      <Input style={inputStyle} defaultValue="Enter your email" />
+      <Input style={inputStyle} placeholder="Enter your email" />
       <Button style={ButtonStyle} type="primary">Submit</Button>
     </Space.Compact>
             <p className="text-blogText text-blog-text-children">
@@ -110,7 +111,7 @@ const Footer = () => {
 
 
 
-        <div className="grid grid-cols-4 p-5 pt-8">
+        <div className="grid grid-cols-4 p-5 pt-8 border-b border-[#46A35833] mb-5">
             <div className="flex flex-col gap-2">
                 <span className="text-linkColor text-filterChildren font-bold">My Account</span>
                 <span className="text-linkColor text-blog-text-children block">My Account</span>
@@ -122,22 +123,22 @@ const Footer = () => {
 
 
             <div className="flex flex-col gap-2">
-                <span className="text-linkColor text-filterChildren font-bold">My Account</span>
-                <span className="text-linkColor text-blog-text-children block">My Account</span>
-                <span className="text-linkColor text-blog-text-children block">Our stores</span>
-                <span className="text-linkColor text-blog-text-children block">Contact us</span>
-                <span className="text-linkColor text-blog-text-children block">Career</span>
-                <span className="text-linkColor text-blog-text-children block">Specials</span>
+                <span className="text-linkColor text-filterChildren font-bold">Help & Guide</span>
+                <span className="text-linkColor text-blog-text-children block">Help Center</span>
+                <span className="text-linkColor text-blog-text-children block">How to Buy</span>
+                <span className="text-linkColor text-blog-text-children block">Shipping & Delivery</span>
+                <span className="text-linkColor text-blog-text-children block">Product Policy</span>
+                <span className="text-linkColor text-blog-text-children block">How to Return</span>
             </div>
 
 
             <div className="flex flex-col gap-2">
-                <span className="text-linkColor text-filterChildren font-bold">My Account</span>
-                <span className="text-linkColor text-blog-text-children block">My Account</span>
-                <span className="text-linkColor text-blog-text-children block">Our stores</span>
-                <span className="text-linkColor text-blog-text-children block">Contact us</span>
-                <span className="text-linkColor text-blog-text-children block">Career</span>
-                <span className="text-linkColor text-blog-text-children block">Specials</span>
+                <span className="text-linkColor text-filterChildren font-bold">Categories</span>
+                <span className="text-linkColor text-blog-text-children block">House Plants</span>
+                <span className="text-linkColor text-blog-text-children block">Potter Plants</span>
+                <span className="text-linkColor text-blog-text-children block">Seeds</span>
+                <span className="text-linkColor text-blog-text-children block">Small Plants</span>
+                <span className="text-linkColor text-blog-text-children block">Accessories</span>
             </div>
 
             <div className="w-[70%] flex flex-col gap-2">
@@ -165,9 +166,18 @@ const Footer = () => {
                     <img src={Payment} alt="" />
                 </div>
             </div>
+            
 
         </div>
+
     </footer>
+    <div className="bg-white text-center block mb-5">
+       <span className="text-center">
+        © 2021 GreenShop. All Rights Reserved.
+        </span>
+       </div>
+   </div>
+    
   )
 }
 

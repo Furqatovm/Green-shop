@@ -4,6 +4,7 @@ import Layout from "../layout/layout";
 import Home from "../pages/home/home";
 import Profile from "../pages/profile/profile";
 import PrivateRoute from "../components/private/privateRoute";
+import Shop from "../pages/shop/shop";
 
 
 
@@ -23,6 +24,10 @@ export const router =createBrowserRouter([
             {
                 path:"/profile",
                 element:<Profile />
+            },
+            {
+                path:"/shop",
+                element:<Shop />
             },
             {
                 element:<PrivateRoute />,

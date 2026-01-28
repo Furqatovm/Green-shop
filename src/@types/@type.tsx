@@ -13,6 +13,14 @@ export const ButtonStyle ={
     padding:"20px 30px"
 }
 
+export const IncrementStyle ={
+    backgroundColor:"#46A358",
+    outline:"#46A358",
+    color:"white",
+    border:"#46A358"
+
+}
+
 
 export const inputStyle ={
   borderColor: '#46A358',  
@@ -65,4 +73,10 @@ export interface Category {
     created_at:string,
     title:string,
     description:string,
+  }
+
+  export interface ProductTitleType {
+    id:number;
+    title:string;
+    route_path:string;
   }
