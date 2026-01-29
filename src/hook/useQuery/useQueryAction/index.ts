@@ -6,6 +6,7 @@ import { setauthorizationModalVisibility } from "../../../redux/modal-store";
 import Cookies from "js-cookie";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
+import { getCoupon } from "../../../redux/shop-slice";
 
 
 
@@ -13,7 +14,7 @@ export  const useLoginMutation =() =>{
     const dispatch =useReduxDispatch();
     const axios =useAxios();
     return useMutation({
-        mutationKey:["login"],
+        mutationKey:[`login`],
         mutationFn:(data:object) =>axios({url:"user/sign-in", method:"POST", body:data}),
         onSuccess:(data) =>{
             console.log(data);
@@ -96,4 +97,22 @@ export const useLoginWithGoogle =() =>{
     }
    })
 
+}
+
+export const useGetCoupon =() =>{
+    const dispatch =useReduxDispatch()
+    const axios =useAxios()
+   return useMutation({
+    mutationKey:["coupon"],
+    mutationFn:({coupon_code}:{coupon_code:string})=>axios({url:"features/coupon", param:{coupon_code}}),
+    onSuccess(data){
+        console.log(data)
+        dispatch(getCoupon(data?.data.discount_for));
+        toast.success("Chegirma qabul qilindi")
+    },
+    onError(error){
+       console.log(error)
+       toast.error("Coupon is not accepted")
+    }
+   })
 }

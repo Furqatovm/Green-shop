@@ -5,7 +5,7 @@ import { GrNotification } from "react-icons/gr";
 import { useReduxDispatch, useReduxSelector } from "../hook/useRedux/useredux";
 import { setauthorizationModalVisibility } from "../redux/modal-store";
 import Cookies from "js-cookie"
-import { useEffect, useState, type FC } from "react";
+import {  useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { Badge } from "antd";
 
@@ -18,13 +18,11 @@ const Header = () => {
     const {pathname} =useLocation();
     const dispatch =useReduxDispatch();
     
-    const [userInfo, setUserInfo] = useState<any>(null);
+    const [userInfo, setUserInfo] = useState<any>(
+      Cookies.get("user") ? JSON.parse(Cookies.get("user")!) : null
+    );
+    
 
-    useEffect(() => {
-      const user = Cookies.get("user");
-      if (user) setUserInfo(JSON.parse(user));
-    }, []); // component mount bo‘lganda ishlaydi
-   
 
   return (
     <div className="">

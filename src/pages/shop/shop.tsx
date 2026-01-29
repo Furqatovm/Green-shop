@@ -3,8 +3,12 @@ import CartItems from "../../components/cart-item";
 import CartTotals from "../../components/shopcupon";
 import { useReduxSelector } from "../../hook/useRedux/useredux";
 
+
+
 const Shop = () => {
   const {data} =useReduxSelector((state) =>state.shopSlice)
+
+
   return (
     <div className="grid grid-cols-[3fr_1fr] gap-8 mt-10">
       {/* LEFT SIDE */}
@@ -32,7 +36,7 @@ const Shop = () => {
       }
 
       {/* RIGHT SIDE */}
-      <div>
+      <div >
       <span className="text-filterChildren font-bold block border-b border-[#46A35880] mb-2 pb-2">Card Total</span>
       <CartTotals />
       </div>

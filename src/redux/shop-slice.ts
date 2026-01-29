@@ -3,11 +3,13 @@ import type {  ShopCardType } from "../@types/@type";
 import toast from "react-hot-toast";
 
 interface InitialStateType {
-    data:ShopCardType[]
+    data:ShopCardType[],
+    coupon:number
 }
 
 const initialState:InitialStateType ={
     data:JSON.parse(localStorage.getItem("shop") as string) || [],
+    coupon:0,
 }
 
 const shopSlice =createSlice({
@@ -67,9 +69,13 @@ const shopSlice =createSlice({
                 }
                 return val
             })
+        },
+
+        getCoupon(state, {payload}){
+            state.coupon =payload
         }
     }
 })
 
-export const {getData, deleteData, incrementNumber, decrement } =shopSlice.actions;
+export const {getData, deleteData, incrementNumber, decrement, getCoupon } =shopSlice.actions;
 export default shopSlice.reducer
