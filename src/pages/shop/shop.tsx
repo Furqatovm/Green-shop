@@ -8,7 +8,11 @@ const Shop = () => {
   return (
     <div className="grid grid-cols-[3fr_1fr] gap-8 mt-10">
       {/* LEFT SIDE */}
-      <div>
+      {
+        data.length ==0 ?
+        <Empty />
+        :
+        <div>
         {/* HEADER */}
         <div className="grid px-4 grid-cols-[2.5fr_1fr_1.2fr_1fr_0.3fr] mb-4 text-linkColor font-medium border-b pb-2 border-[#46A35880]">
           <span>Products</span>
@@ -21,13 +25,11 @@ const Shop = () => {
         {/* ITEMS */}
         <div className="flex flex-col gap-4">
           {
-           data.length ==0 ? 
-           <Empty />
-           :
            data.map((val) => < CartItems key={val._id} {...val} />)
           }
         </div>
       </div>
+      }
 
       {/* RIGHT SIDE */}
       <div>

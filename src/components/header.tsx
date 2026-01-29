@@ -28,7 +28,7 @@ const Header = () => {
 
   return (
     <div className="">
-        <header className="w-[90%] border-b border-[#46A35880]  py-3  px-2 m-auto flex justify-between items-center">
+        <header className="w-[90%]  py-3  px-2 m-auto flex justify-between items-center">
         <Link to={"/"}>
             <Logo />
         </Link>

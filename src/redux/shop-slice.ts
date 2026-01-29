@@ -39,6 +39,7 @@ const shopSlice =createSlice({
         deleteData(state, {payload}){
             state.data =state.data.filter((val) =>val._id !== payload);
             localStorage.setItem("shop", JSON.stringify(state.data))
+            toast.error("Element is removed")
         },
 
         incrementNumber (state, {payload}){
