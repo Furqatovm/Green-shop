@@ -1,7 +1,7 @@
 
 const Delete = () => {
   return (
-    <div>
+    <div className="hover:text-red-500 " title="Delete">
     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g id="Iconly/Curved/Delete">
     <g id="Delete">

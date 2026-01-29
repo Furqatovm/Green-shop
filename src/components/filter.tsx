@@ -141,7 +141,7 @@ const FilterPage = () => {
             :
             data2?.data.length ==0 ? "bunday ma'lumot topilmadi" :
             data2?.data.map((val:ProductItem) =>{
-                return   <Card  key={val._id} {...val}/>
+                return   <Card  key={val._id} product={val}/>
                })
            }
 

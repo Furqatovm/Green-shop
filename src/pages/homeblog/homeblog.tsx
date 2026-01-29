@@ -13,7 +13,7 @@ const HomeBlog = () => {
         <div className="grid grid-cols-4 gap-10 my-10">
             {
                 blogs.map((val:PrototypeDataType) =>{
-                    return  <div className="shadow-[0px_4px_6px_0px_rgba(0,0,0,0.1)] rounded-sm">
+                    return  <div key={(Math.random())+(Date.now())} className="shadow-[0px_4px_6px_0px_rgba(0,0,0,0.1)] rounded-sm">
                        <img src={val.img}  className="rounded-t-sm" alt="" />
                     <div className="bg-[#FBFBFB] rounded-b-sm p-4 flex flex-col gap-1 items-start">
                         <span className="text-logoColor text-blog-text-children font-medium">{val.created_at}</span>

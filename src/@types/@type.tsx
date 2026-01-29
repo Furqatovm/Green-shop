@@ -80,3 +80,9 @@ export interface Category {
     title:string;
     route_path:string;
   }
+
+
+  export interface ShopCardType extends ProductItem {
+    counter:number;
+    userPrice:number;
+  }
