@@ -95,3 +95,36 @@ export interface Category {
     id:number;
     title:string
   }
+
+
+  export const radioTyle ={
+    backgroundColor: '#46A358',
+    color: '#fff',             
+    borderColor: '#46A358'
+  }
+
+
+  export interface DetailType {
+    product?:{
+      _id: string;
+      category: string;
+      comments: any[]; 
+      created_at: string; 
+      created_by: string;
+      description: string;
+      detailed_images: string[];
+      discount: boolean;
+      discount_price: string;
+      main_image: string;
+      price: number;
+      rate: number;
+      short_description: string;
+      sold_times: number;
+      tags: string[];
+      title: string;
+      views: number;
+      __v: number;
+    }
+
+  }
+  

@@ -14,9 +14,7 @@ const dispatch =useReduxDispatch()
 
   return (
     <div className="flex flex-col gap-3">
-      {/* ITEM */}
       <div className="grid grid-cols-[2.5fr_1fr_1.2fr_1fr_0.3fr] items-center bg-[#f8f8f8] px-3 py-4 rounded-md">
-        {/* Product Info */}
         <div className="flex gap-4 items-center">
           <Avatar src={product.main_image} shape="square" size={"large"} />
           <div>
@@ -27,10 +25,8 @@ const dispatch =useReduxDispatch()
           </div>
         </div>
 
-        {/* Price per item */}
         <span className="text-blogText font-medium">${product.price.toFixed(2)}</span>
 
-        {/* Quantity controls */}
         <div className="flex gap-2 items-center">
           <Button
             shape="circle"
@@ -49,10 +45,8 @@ const dispatch =useReduxDispatch()
           />
         </div>
 
-        {/* Total Price */}
         <span className="text-logoColor font-bold">${product.userPrice?.toFixed(2)}</span>
 
-        {/* Delete */}
         <span onClick={()=> dispatch(deleteData(product._id))} className="hover:text-logoColor cursor-pointer">
           <Delete />
         </span>
