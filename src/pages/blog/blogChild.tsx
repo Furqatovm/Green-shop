@@ -4,35 +4,42 @@ import {
     HeartOutlined,
 } from '@ant-design/icons';
 import {  Card } from 'antd';
-import { useState } from 'react';
+import {  type FC } from 'react';
+import type { BlogPost } from '../../@types/@type';
+import { useNavigate } from 'react-router-dom';
 
-const actions: React.ReactNode[] = [
-  <span className='flex gap-1 hover:text-logoColor items-center justify-center'>
-    <EyeOutlined key="view"  />
-    <span>9</span>
+interface BlogPostChildren {
+  product:BlogPost
+}
+
+
+
+const BlogChild:FC<BlogPostChildren> = ({product}) => {
+  const actions: React.ReactNode[] = [
+    <span className='flex gap-1 hover:text-logoColor items-center justify-center'>
+      <EyeOutlined key="view"  />
+      <span>{product.views}</span>
+    </span>,
+    <span  className='flex gap-1 hover:text-logoColor items-center justify-center'>
+     <MessageOutlined key="comment"  />
+     <span>{product.__v}</span>
+   </span>,
+    <span  className='flex gap-1 hover:text-logoColor items-center justify-center'>
+    <HeartOutlined key="like"  />
+    <span>{product.reaction_length}</span>
   </span>,
-  <span  className='flex gap-1 hover:text-logoColor items-center justify-center'>
-   <MessageOutlined key="comment"  />
-   <span>9</span>
- </span>,
-  <span  className='flex gap-1 hover:text-logoColor items-center justify-center'>
-  <HeartOutlined key="like"  />
-  <span>9</span>
-</span>,
-];
+  ];
+  const navite =useNavigate()
 
 
-const BlogChild = () => {
-    const [loading, setLoading] = useState<boolean>(false);
   return (
-    <Card loading={loading} actions={actions} style={{ minWidth: 300 }}>
+    <Card  actions={actions} 
+          onClick={() =>(navite(`/blog/${product._id}`))}
+         style={{ width:"100%", height:"100%" }}>
       <Card.Meta
-        title="Card title"
-        description={
-          <>
-           <p>Flowers are an essential element or accessory for every wedding. These are needed for the bridal bouquet, table flowers, entrances, interior décor, and bridesmaids’ posies. However, picking ideal flowers for a wedding is an extremely confusing task for most brides and grooms. In fact, it is natural for them to argue over such subjects too.</p>
-          </>
-        }
+  
+        title={`${product.title}`} style={{cursor:"pointer"}}
+        description={product.short_description}
       />
     </Card>
   )

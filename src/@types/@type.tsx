@@ -128,3 +128,17 @@ export interface Category {
 
   }
   
+
+  export interface BlogPost {
+    _id: string;
+    title: string;
+    short_description: string;
+    content: string;
+    created_at: string; 
+    created_by: string; 
+    views: number;
+    reaction_length: number;
+    __v: number;
+  }
+
+ 

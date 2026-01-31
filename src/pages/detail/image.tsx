@@ -11,6 +11,7 @@ interface ProductGalleryProps {
 const ProductGallery:React.FC<ProductGalleryProps> = ({detailed_images,  main_img}) => {
   const images = detailed_images || [];
   const [active, setActive] = useState(main_img);
+  console.log(main_img)
 
 
   return (
@@ -35,12 +36,13 @@ const ProductGallery:React.FC<ProductGalleryProps> = ({detailed_images,  main_im
       </Space>
 
       {/* Main image */}
-      <div className="p-4 bg-[#FBFBFB] rounded-lg">
+      <div className="p-4 bg-[#FBFBFB] w-full h-130">
       <Image 
         src={active}
-        style={{objectFit:"cover"}}
-        width={520}
-        height={500}
+        preview={true}
+        width={"100%"}
+        height={"100%"}
+        style={{objectFit:"contain"}}
       />
       </div>
     </div>

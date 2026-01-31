@@ -6,6 +6,7 @@ import Profile from "../pages/profile/profile";
 import PrivateRoute from "../components/private/privateRoute";
 import Shop from "../pages/shop/shop";
 import DetailPage from "../pages/detail/detail";
+import BlogDetail from "../pages/blog/BlogDetail";
 
 
 
@@ -30,6 +31,11 @@ export const router =createBrowserRouter([
                 path:"/flower/:category/:id",
                 element:<DetailPage />
             },
+            {
+                path:"/blog/:id",
+                element:<BlogDetail />
+            }
+            ,
             {
                 element:<PrivateRoute />,
                 children:[

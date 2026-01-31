@@ -12,9 +12,10 @@ const DetailPage = () => {
     url: `flower/category/${category}/${id}`,
     pathname: `detail`,
   });
-
-  const images =data?.data.detailed_images;
   console.log(data)
+
+  const images =data?.data?.detailed_images ||[];
+  const main_img =data?.data?.main_image
 
   return (
     <div>
@@ -24,7 +25,7 @@ const DetailPage = () => {
             isLoading ?
             <DetailLoader />
             :
-            <ProductGallery detailed_images={images} main_img={data?.data.main_image}/>
+            <ProductGallery detailed_images={images} main_img={main_img}/>
           }
         </div>
         <div>
