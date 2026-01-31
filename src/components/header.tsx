@@ -6,8 +6,7 @@ import { useReduxDispatch, useReduxSelector } from "../hook/useRedux/useredux";
 import { setauthorizationModalVisibility } from "../redux/modal-store";
 import Cookies from "js-cookie"
 import {  useState } from "react";
-import { CgProfile } from "react-icons/cg";
-import { Badge } from "antd";
+import { Avatar, Badge } from "antd";
 
 
 
@@ -21,7 +20,8 @@ const Header = () => {
     const [userInfo, setUserInfo] = useState<any>(
       Cookies.get("user") ? JSON.parse(Cookies.get("user")!) : null
     );
-    
+    const user =JSON.parse(Cookies.get("user") as string)
+    console.log(user)
 
 
   return (
@@ -33,7 +33,7 @@ const Header = () => {
 
         <nav className="flex gap-10 items-center  max-md:hidden">
             <Link to={"/"} className={`${pathname ==="/" &&"text-logoColor"} font-medium`}>Home</Link>
-            <Link to={"/blog"}  className={`${pathname ==="/blog" &&"text-logoColor"} font-medium`}>Blog</Link>
+            <Link to={"/blog"}  className={`${pathname.includes("/blog") &&"text-logoColor"} font-medium`}>Blog</Link>
         </nav>
         
         <div className="flex gap-7 items-center text-[20px]">
@@ -49,7 +49,7 @@ const Header = () => {
             </Link>
 
            {userInfo ? <Link to={"/profile"} className="cursor-pointer text-[26px]">
-            <CgProfile />
+            <Avatar src={user.profile_photo}  />
            </Link> :
             <button onClick={() => dispatch(setauthorizationModalVisibility())} className="bg-logoColor text-white text-[1rem] flex gap-2 py-1.5 px-4 hover:opacity-90 rounded-md cursor-pointer items-center font-medium">
             <span className="text-[20px] text-white">

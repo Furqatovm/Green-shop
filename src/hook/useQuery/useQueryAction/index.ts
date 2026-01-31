@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useAxios } from "../../useAxios/axios"
 import toast from "react-hot-toast";
 import { useReduxDispatch } from "../../useRedux/useredux";
@@ -7,6 +7,9 @@ import Cookies from "js-cookie";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
 import { getCoupon } from "../../../redux/shop-slice";
+import { setBlogAuthModal } from "../../../redux/blog-modal-slice";
+import { useDispatch } from "react-redux";
+
 
 
 
@@ -115,4 +118,115 @@ export const useGetCoupon =() =>{
        toast.error("Coupon is not accepted")
     }
    })
+}
+
+
+
+export const useIncreaseView  =() =>{
+    const axios =useAxios();
+
+    return useMutation({
+        mutationKey:["increment-view"],
+        mutationFn:({postId}: {postId: string}) =>axios({
+            url:`user/blog/view`,
+            method:"PUT",
+            body:{_id: postId}
+        }),
+        onSuccess:(data) =>{
+            console.log(data)
+        },
+        onError:(error) =>{
+            console.log(error)
+        }
+    })
+}
+
+
+export const useCreateBlog =() =>{
+    const dispatch =useReduxDispatch()
+    const axios =useAxios();
+    const queryClient =useQueryClient()
+    return useMutation({
+        mutationKey:["add-blog"],
+        mutationFn:(data:{title:string, content:string}) =>
+            axios({
+                url:"user/blog",
+                method:"POST",
+                body:data
+            }),
+
+            onSuccess:(data) =>{
+                console.log(data);
+                dispatch(setBlogAuthModal())
+                toast.success("data is added")
+                queryClient.invalidateQueries({ queryKey: ['blogs'] });
+            },
+            onError:(error) =>{
+                console.log(error)
+                toast.error("xatolik yuz berdi")
+            }
+    })
+}
+
+
+export const useDeleteBLog =() =>{
+    const dispatch =useReduxDispatch()
+    const axios =useAxios();
+    const queryClient =useQueryClient()
+    return useMutation({
+        mutationKey:["delete-blog"],
+        mutationFn:(_id:string) =>
+            axios({
+                url:"user/blog",
+                method:"DELETE",
+                body:{
+                    _id,
+                }
+            }),
+
+            onSuccess:(data) =>{
+                console.log(data);
+                dispatch(setBlogAuthModal())
+                toast.success("data is added")
+                queryClient.invalidateQueries({ queryKey: ['blogs'] });
+            },
+            onError:(error) =>{
+                console.log(error)
+                toast.error("xatolik yuz berdi")
+            }
+    })
+}
+
+
+
+
+
+export const useChangeAccountDetails =() =>{
+    const dispatch =useDispatch()
+    const axios =useAxios();
+    const queryClient =useQueryClient()
+    return useMutation({
+        mutationKey:["change-account-details"],
+        mutationFn:({...data}:{_id:string; name:string; surname:string; email:string; phone_number:string; username:string}) =>
+            axios({
+                url:"user/account-details",
+                method:"POST",
+                body:{
+                    ...data
+                }
+            }),
+
+            onSuccess:(data) =>{
+                console.log(data);
+                toast.success("data is added")
+                Cookies.remove("user");
+                Cookies.remove("token");
+                dispatch(setauthorizationModalVisibility())
+                queryClient.invalidateQueries({ queryKey: ['change-account-details'] });
+            },
+            onError:(error) =>{
+                console.log(error)
+                toast.error("xatolik yuz berdi")
+            }
+    })
 }

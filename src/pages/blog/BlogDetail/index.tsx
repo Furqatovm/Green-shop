@@ -18,9 +18,13 @@ const BlogDetail = () => {
             pathname:`blog-user-info-${userId}`
         });
 
-
         const userInfo =data2?.data
-        console.log(userInfo)
+
+
+        const {} =useQueryHandler({
+            url:"user/blog/view",
+            pathname:`view-increment-${id}`,
+        })
   return (
     <div className="p-2">
         <div className="flex gap-2 items-center">

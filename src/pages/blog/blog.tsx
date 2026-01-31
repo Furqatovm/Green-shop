@@ -3,11 +3,13 @@ import People from "../../assets/images/people.png";
 import { ButtonStyle, type BlogPost } from "../../@types/@type";
 import BlogChild from "./blogChild";
 import { useQueryHandler } from "../../hook/useQuery/usequery";
+import { PlusOutlined } from '@ant-design/icons';
 
 import Cookies from "js-cookie";
 import { useReduxDispatch } from "../../hook/useRedux/useredux";
 import { setauthorizationModalVisibility } from "../../redux/modal-store";
 import { useState } from "react";
+import { setBlogAuthModal } from "../../redux/blog-modal-slice";
 const user =Cookies.get("user");
 
 const { Search } = Input;
@@ -32,9 +34,20 @@ const Blog = () => {
       
       {
         user ?
-        <div className="w-[70%] mx-auto my-10">
+      <div className="flex flex-col gap-5">
+          <div className="w-[70%] mx-auto my-10">
     <Search placeholder="input search text" value={searchValue} onChange={(e) =>setSearchValue(e.target.value)}  enterButton />
+     
     </div>
+    <div>
+    <Button style={{backgroundColor:"black", color:"white", border:"black"}}
+      onClick={() => dispatch(setBlogAuthModal())} 
+ 
+    >
+        <PlusOutlined   />
+      </Button>
+    </div>
+      </div>
         :
         <div className="flex flex-col w-[60%] mx-auto items-center justify-center">
         <h2 className="text-[70px]  font-bold text-center ">
