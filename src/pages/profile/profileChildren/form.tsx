@@ -5,7 +5,7 @@ import { useChangeAccountDetails } from "../../../hook/useQuery/useQueryAction";
 
 const AccountDetails = () => {
     const userInfo =JSON.parse(Cookies.get("user") as string)
-    console.log(userInfo)
+    
     const {mutate: changeDetails} =useChangeAccountDetails()
   return (
     <Form 
@@ -13,7 +13,7 @@ const AccountDetails = () => {
     surname: userInfo.surname,
     name: userInfo.name,
     email: userInfo.email,
-    phone: userInfo.phone,
+    phone: userInfo.phone_number,
     username: userInfo.username,
     profile_photo:userInfo.profile_photo
   }}
@@ -47,15 +47,23 @@ const AccountDetails = () => {
   </Form.Item>
 
   <Form.Item
-    label="Phone Number"
-    name="phone_number"
-    rules={[{ required: true, message: "Please enter Phone Number" }]}
-  >
-    <Space.Compact>
-      <Input style={{ width: "20%" }} defaultValue="+998" />
-      <Input style={{ width: "80%" }} />
-    </Space.Compact>
-  </Form.Item>
+  label="Phone Number"
+  required
+>
+  <Space.Compact>
+    <Form.Item name="prefix" noStyle initialValue="+998">
+      <Input style={{ width: "20%" }} />
+    </Form.Item>
+    <Form.Item
+      name="phone_number"
+      noStyle
+      rules={[{ required: true, message: "Please enter Phone Number" }]}
+    >
+      <Input style={{ width: "80%" }} placeholder="Enter phone number" />
+    </Form.Item>
+  </Space.Compact>
+</Form.Item>
+
 
   <Form.Item
     label="UserName"

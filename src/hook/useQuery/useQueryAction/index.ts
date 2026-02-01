@@ -9,6 +9,7 @@ import { auth } from "../../../firebase/firebase";
 import { getCoupon } from "../../../redux/shop-slice";
 import { setBlogAuthModal } from "../../../redux/blog-modal-slice";
 import { useDispatch } from "react-redux";
+import { setToken, setUser } from "../../../redux/auth-slice";
 
 
 
@@ -24,8 +25,8 @@ export  const useLoginMutation =() =>{
             if(data.message ==="success"){
                 toast.success("Login muvaffaqiyatli bo'ldi");
                 dispatch(setauthorizationModalVisibility());
-                Cookies.set("user", JSON.stringify(data.data.user))
-                Cookies.set("token", data.data.token)
+                dispatch(setUser(data.data.user))
+                dispatch(setToken(data.data.token))
                 
             } else{
                 toast.error("Login muvaffaqiyatsiz bo'ldi");
@@ -87,8 +88,8 @@ export const useLoginWithGoogle =() =>{
         if(data?.message ==="success"){
             toast.success("Login muvaffaqiyatli bo'ldi");
             dispatch(setauthorizationModalVisibility());
-            Cookies.set("user", JSON.stringify(data.data.user))
-            Cookies.set("token", data.data.token)
+            dispatch(setUser(data.data.user))
+            dispatch(setToken(data.data.token))
             
         } else{
             toast.error("Login muvaffaqiyatsiz bo'ldi");
@@ -204,7 +205,6 @@ export const useDeleteBLog =() =>{
 export const useChangeAccountDetails =() =>{
     const dispatch =useDispatch()
     const axios =useAxios();
-    const queryClient =useQueryClient()
     return useMutation({
         mutationKey:["change-account-details"],
         mutationFn:({...data}:{_id:string; name:string; surname:string; email:string; phone_number:string; username:string}) =>
@@ -219,10 +219,9 @@ export const useChangeAccountDetails =() =>{
             onSuccess:(data) =>{
                 console.log(data);
                 toast.success("data is added")
-                Cookies.remove("user");
-                Cookies.remove("token");
+                dispatch(setUser(data.data.user));
+                dispatch(setToken(data.data.token))
                 dispatch(setauthorizationModalVisibility())
-                queryClient.invalidateQueries({ queryKey: ['change-account-details'] });
             },
             onError:(error) =>{
                 console.log(error)

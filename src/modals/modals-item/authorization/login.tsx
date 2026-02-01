@@ -16,8 +16,8 @@ const Login = () => {
     <ConfigProvider theme={{components:{Input:{activeBorderColor:"#46A358", hoverBorderColor:"#46A358"}}}} >
     <Form onFinish={(values)=>login(values)} >
         
-        <div className="flex gap-2 flex-col text-[14px]">
-            <span className=" text-linkColor text-[14px]">Enter your username and password to login.</span>
+        <div className="flex gap-2 flex-col text-blog-text-children">
+            <span className=" text-linkColor text-blog-text-children">Enter your username and password to login.</span>
             <Form.Item name={"email"}>
             <Input type="text" required placeholder="almamun_uxui@outlook.com" className="text-linkColor px-4! outline-logoColor  py-2!  rounded-[5px] border border-[#EAEAEA]"  />
             </Form.Item>
@@ -38,7 +38,7 @@ const Login = () => {
         </div>
 
         <div   className="flex flex-col gap-5">
-        <button type="button" onClick={() =>loginWithGoogle()} className="py-2.5 px-4!  text-[#727272] cursor-pointer hover:opacity-85 bg-transparent flex gap-2 items-center justify-center w-full border border-[#EAEAEA]  rounded-[5px] ">
+        <button type="button" onClick={() =>loginWithGoogle()} className="py-2.5 px-4!  text-blogText cursor-pointer hover:opacity-85 bg-transparent flex gap-2 items-center justify-center w-full border border-[#EAEAEA]  rounded-[5px] ">
       <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g clipPath="url(#clip0_9_990)">
     <path d="M16.4336 17.6055C14.6992 19.0703 12.4493 20 10 20C6.35547 20 3.15621 17.9922 1.42188 15.0625L2.07117 12.0695L4.94922 11.5352C5.61719 13.6914 7.63278 15.2734 10 15.2734C11.1484 15.2734 12.2148 14.9102 13.0938 14.2656L15.8594 14.6875L16.4336 17.6055Z" fill="#59C36A" />

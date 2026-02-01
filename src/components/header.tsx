@@ -1,11 +1,10 @@
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useSearchParams } from "react-router-dom"
 import Logo from "../assets/logo"
 import { FiSearch } from "react-icons/fi";
 import { GrNotification } from "react-icons/gr";
 import { useReduxDispatch, useReduxSelector } from "../hook/useRedux/useredux";
 import { setauthorizationModalVisibility } from "../redux/modal-store";
 import Cookies from "js-cookie"
-import {  useState } from "react";
 import { Avatar, Badge } from "antd";
 
 
@@ -17,11 +16,11 @@ const Header = () => {
     const {pathname} =useLocation();
     const dispatch =useReduxDispatch();
     
-    const [userInfo, setUserInfo] = useState<any>(
-      Cookies.get("user") ? JSON.parse(Cookies.get("user")!) : null
-    );
-    const user =JSON.parse(Cookies.get("user") as string)
-    console.log(user)
+    
+    const userCooki = Cookies.get("user")
+    const userInfo = userCooki ? JSON.parse(userCooki) :null
+
+    const {user} =useReduxSelector((state) =>state.authSlice)
 
 
   return (
@@ -48,7 +47,7 @@ const Header = () => {
            </Badge>
             </Link>
 
-           {userInfo ? <Link to={"/profile"} className="cursor-pointer text-[26px]">
+           {user ? <Link to={"/profile"} className="cursor-pointer text-[26px]">
             <Avatar src={user.profile_photo}  />
            </Link> :
             <button onClick={() => dispatch(setauthorizationModalVisibility())} className="bg-logoColor text-white text-[1rem] flex gap-2 py-1.5 px-4 hover:opacity-90 rounded-md cursor-pointer items-center font-medium">
