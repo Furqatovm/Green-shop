@@ -12,6 +12,7 @@ import AccountDetails from "./profileChildren/form";
 import { useReduxDispatch } from "../../hook/useRedux/useredux";
 import { setLogout } from "../../redux/auth-slice";
 import { useNavigate } from "react-router-dom";
+import { clearLocalStorage } from "../../redux/shop-slice";
 
 const { Sider, Content } = Layout;
 
@@ -33,6 +34,7 @@ const Profile = () => {
     setIsModalOpen(false);
     dispatch(setLogout())
     navigate("/")
+    dispatch(clearLocalStorage())
     
   };
   const handleCancel = () => {
@@ -106,7 +108,6 @@ const Profile = () => {
         return (
           <>
             {setIsModalOpen(true)}
-           
           </>
         );
       default:
@@ -149,9 +150,10 @@ const Profile = () => {
             <Modal
               title="Confirm Log out"
               open={isOpenModal}
-              onOk={handleOk}
+              onOk={handleOk
+              }
               onCancel={handleCancel}
-              okText="Yes, Log out"
+              okText="Yes, Log out" 
               cancelText="Cancel"
               okButtonProps={{ style: { backgroundColor: "red", borderColor: "red" }}}
             >
