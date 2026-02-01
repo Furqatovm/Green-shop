@@ -5,18 +5,17 @@ import BlogChild from "./blogChild";
 import { useQueryHandler } from "../../hook/useQuery/usequery";
 import { PlusOutlined } from '@ant-design/icons';
 
-import Cookies from "js-cookie";
-import { useReduxDispatch } from "../../hook/useRedux/useredux";
+import { useReduxDispatch, useReduxSelector } from "../../hook/useRedux/useredux";
 import { setauthorizationModalVisibility } from "../../redux/modal-store";
 import { useState } from "react";
 import { setBlogAuthModal } from "../../redux/blog-modal-slice";
-const user =Cookies.get("user");
 
 const { Search } = Input;
 
 const Blog = () => {
   const [searchValue, setSearchValue] =useState<string>("")
   const dispatch  =useReduxDispatch()
+  const{user} =useReduxSelector((state) =>state.authSlice)
   const {data, isLoading} =useQueryHandler({
     url:"user/blog",
     pathname:`blog-${searchValue}`,
@@ -25,7 +24,6 @@ const Blog = () => {
     }
   })
   const blogData =data?.data
-  console.log(searchValue)
   return (
     <div className="px-2">
       <div className="bg-[#f5f5f5] p-4 rounded-2xl my-5">
