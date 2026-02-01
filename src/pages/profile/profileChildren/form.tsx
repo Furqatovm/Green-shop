@@ -13,7 +13,7 @@ const AccountDetails = () => {
     surname: userInfo.surname,
     name: userInfo.name,
     email: userInfo.email,
-    phone: userInfo.phone_number,
+    phone_number: userInfo.phone_number,
     username: userInfo.username,
     profile_photo:userInfo.profile_photo
   }}

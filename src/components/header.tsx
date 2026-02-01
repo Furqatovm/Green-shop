@@ -1,10 +1,9 @@
-import { Link, useLocation, useSearchParams } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import Logo from "../assets/logo"
 import { FiSearch } from "react-icons/fi";
 import { GrNotification } from "react-icons/gr";
 import { useReduxDispatch, useReduxSelector } from "../hook/useRedux/useredux";
 import { setauthorizationModalVisibility } from "../redux/modal-store";
-import Cookies from "js-cookie"
 import { Avatar, Badge } from "antd";
 
 
@@ -17,8 +16,6 @@ const Header = () => {
     const dispatch =useReduxDispatch();
     
     
-    const userCooki = Cookies.get("user")
-    const userInfo = userCooki ? JSON.parse(userCooki) :null
 
     const {user} =useReduxSelector((state) =>state.authSlice)
 

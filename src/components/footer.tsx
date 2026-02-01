@@ -1,4 +1,4 @@
-import { Button, Input, Space } from "antd"
+import { Button, Form, Input, Space } from "antd"
 import Footerimg1 from "../assets/images/footerimg1.png"
 import { ButtonStyle, inputStyle } from "../@types/@type"
 import Logo from "../assets/logo"
@@ -10,10 +10,13 @@ import Twitter from "../assets/icons/Twitter.png"
 import Union from "../assets/icons/Union.png"
 
 import Payment from "../assets/images/payment.png"
+import { useOnSubscribe } from "../hook/useQuery/useQueryAction"
 
 
 
 const Footer = () => {
+
+    const {mutate:setEmail} =useOnSubscribe()
   return (
    <div>
      <footer className="bg-[#FBFBFB] w-[90%] mx-auto mt-30">
@@ -50,10 +53,14 @@ const Footer = () => {
             </div>
             <div className="w-[28%] flex flex-col gap-4">
                 <h4 className="text-linkColor text-filterText font-bold">Would you like to join newsletters?</h4>
-                <Space.Compact style={{ width: '100%' }}>
+                <Form onFinish={(email) =>setEmail(email)}>
+                    <Form.Item name={"email"}>
+                    <Space.Compact style={{ width: '100%' }}>
       <Input style={inputStyle} placeholder="Enter your email" />
-      <Button style={ButtonStyle} type="primary">Submit</Button>
+      <Button htmlType="submit" style={ButtonStyle} type="primary">Submit</Button>
     </Space.Compact>
+                    </Form.Item>
+                </Form>
             <p className="text-blogText text-blog-text-children">
             We usually post offers and challenges in newsletter. We’re your online houseplant destination. We offer a wide range of houseplants and accessories shipped directly from our (green)house to yours! 
             </p>

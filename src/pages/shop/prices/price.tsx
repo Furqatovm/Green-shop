@@ -1,6 +1,7 @@
 import { Button } from "antd"
 import { ButtonStyle } from "../../../@types/@type"
 import { useReduxSelector } from "../../../hook/useRedux/useredux"
+import { Link } from "react-router-dom";
 
 const Prices = () => {
   const {data, coupon} =useReduxSelector((state) => state.shopSlice);
@@ -8,6 +9,7 @@ const Prices = () => {
   const totalWithCoupon:number =+(totalPrice-(totalPrice *(coupon/100))+16).toFixed(2) || 0;
 
   const couponValue:number =+(totalPrice* coupon/100).toFixed(2) || 0;
+
 
   return (
     <div   className='flex flex-col gap-3'>
@@ -34,7 +36,12 @@ const Prices = () => {
       )
     }
     
+   {
+    data.length !==0 &&
+    <Link to={"/product-checkout"}>
     <Button style={{...ButtonStyle, width:"100%"}}>Proceed to checkout</Button>
+    </Link>
+   }
     <span className="text-filterChildren  text-logoColor block text-center cursor-pointer">Continue Shopping</span>
     </div>
   )

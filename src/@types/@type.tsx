@@ -142,3 +142,61 @@ export interface Category {
   }
 
  
+
+
+  export interface ShopItemsType {
+    _id: string;
+    title: string;
+    price: number;
+    discount: boolean;
+    discount_price: string;
+    userPrice: number;
+    category: string;
+    description: string;
+    short_description: string;
+    detailed_images: string[];
+    main_image: string;
+    rate: number;
+    sold_times: number;
+    views: number;
+    comments: any[]; // Agar keyinroq commentlarni alohida type qilmoqchi bo'lsangiz, any[] o'rniga Comment[]
+    tags: string[];
+    created_at: string; // ISO formatdagi sana
+    created_by: string;
+    __v: number;
+    counter: number;
+  };
+
+
+
+interface BillingAddress {
+  name: string;
+  surname: string;
+}
+
+export interface ExtraShopInfo {
+  total: number;
+  method: string; 
+}
+
+ export interface ShopItem {
+  _id: string;
+  title: string;
+  price: number;
+  discount: boolean;
+  discount_price?: string;
+  quantity?: number; 
+  img?: string;     
+}
+
+export interface OrderType {
+  _id: string;
+  created_by: string;
+  created_at: string; 
+  billing_address: BillingAddress;
+  extra_shop_info: ExtraShopInfo;
+  method: string;
+  total: number;
+  shop_list: ShopItem[];
+  __v?: number;
+}

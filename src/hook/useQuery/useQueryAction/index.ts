@@ -3,14 +3,13 @@ import { useAxios } from "../../useAxios/axios"
 import toast from "react-hot-toast";
 import { useReduxDispatch } from "../../useRedux/useredux";
 import { setauthorizationModalVisibility } from "../../../redux/modal-store";
-import Cookies from "js-cookie";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
 import { getCoupon } from "../../../redux/shop-slice";
 import { setBlogAuthModal } from "../../../redux/blog-modal-slice";
-import { useDispatch } from "react-redux";
 import { setToken, setUser } from "../../../redux/auth-slice";
-
+import type { ShopItemsType } from "../../../@types/@type";
+import { setProductCheckout } from "../../../redux/product-checkout";
 
 
 
@@ -25,8 +24,8 @@ export  const useLoginMutation =() =>{
             if(data.message ==="success"){
                 toast.success("Login muvaffaqiyatli bo'ldi");
                 dispatch(setauthorizationModalVisibility());
-                dispatch(setUser(data.data.user))
-                dispatch(setToken(data.data.token))
+                dispatch(setUser(data?.data?.user))
+                dispatch(setToken(data?.data?.token))
                 
             } else{
                 toast.error("Login muvaffaqiyatsiz bo'ldi");
@@ -88,8 +87,8 @@ export const useLoginWithGoogle =() =>{
         if(data?.message ==="success"){
             toast.success("Login muvaffaqiyatli bo'ldi");
             dispatch(setauthorizationModalVisibility());
-            dispatch(setUser(data.data.user))
-            dispatch(setToken(data.data.token))
+            dispatch(setUser(data?.data?.user))
+            dispatch(setToken(data?.data?.token))
             
         } else{
             toast.error("Login muvaffaqiyatsiz bo'ldi");
@@ -203,7 +202,7 @@ export const useDeleteBLog =() =>{
 
 
 export const useChangeAccountDetails =() =>{
-    const dispatch =useDispatch()
+    const dispatch =useReduxDispatch()
     const axios =useAxios();
     return useMutation({
         mutationKey:["change-account-details"],
@@ -219,13 +218,85 @@ export const useChangeAccountDetails =() =>{
             onSuccess:(data) =>{
                 console.log(data);
                 toast.success("data is added")
-                dispatch(setUser(data.data.user));
-                dispatch(setToken(data.data.token))
+                dispatch(setUser(data?.data?.user));
+                dispatch(setToken(data?.data?.token))
                 dispatch(setauthorizationModalVisibility())
             },
             onError:(error) =>{
                 console.log(error)
                 toast.error("xatolik yuz berdi")
             }
+    })
+}
+
+
+
+export const useOnSubscribe =() =>{
+    const axios =useAxios()
+
+    return useMutation({
+        mutationKey:["subscribe"],
+        mutationFn:((email:string) =>{
+            return  axios({
+                url:"features/email-subscribe",
+                method:"POST",
+                body:{
+                    email
+                }
+
+            })
+        }),
+        onSuccess:((data) =>{
+            console.log(data);
+            toast.success("data is added")
+        }),
+        onError:((error) =>console.log(error))
+    })
+
+}
+
+
+
+export interface BillingAddress  {
+    name: string;
+    surname: string;
+  };
+  
+ export  interface ExtraShopInfo  {
+    total: number;
+    method: string;
+  };
+  
+  interface MakeOrderPayload  {
+    shop_list: ShopItemsType[];
+    billing_address: BillingAddress;
+    extra_shop_info: ExtraShopInfo;
+  };
+
+
+
+export const useMakeOrder =() =>{
+    const axios =useAxios()
+    const dispatch =useReduxDispatch()
+    return useMutation({
+        mutationKey:[`make-product`],
+        mutationFn:(orderData:MakeOrderPayload) =>
+            axios({
+                url:"order/make-order",
+                method:"POST",
+                body:orderData
+            }),
+        onSuccess:((data) =>{
+            if(data.message =="success"){
+                toast.success("Buyurtma berildi");
+                dispatch(setProductCheckout())
+                localStorage.setItem("orders", JSON.stringify(data?.data || []) )
+            }
+        }),
+
+        onError:(() =>{
+            toast.error("Buyurtma Berilmadi")
+        })
+
     })
 }

@@ -7,6 +7,7 @@ import PrivateRoute from "../components/private/privateRoute";
 import Shop from "../pages/shop/shop";
 import DetailPage from "../pages/detail/detail";
 import BlogDetail from "../pages/blog/BlogDetail";
+import ProductCheckout from "../pages/product-checkout";
 
 
 
@@ -42,6 +43,10 @@ export const router =createBrowserRouter([
                     {
                         path:"/profile",
                         element:<Profile />
+                    },
+                    {
+                        path:"/product-checkout",
+                        element:<ProductCheckout />
                     }
                 ]
             }
