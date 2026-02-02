@@ -3,7 +3,7 @@ import {
     MessageOutlined,
     HeartOutlined,
 } from '@ant-design/icons';
-import {  Card } from 'antd';
+import {  Card, Flex } from 'antd';
 import {  type FC } from 'react';
 import type { BlogPost } from '../../@types/@type';
 import { useNavigate } from 'react-router-dom';
@@ -36,11 +36,11 @@ const {mutate:increaseView } =useIncreaseView()
 
 
   return (
-    <Card  actions={actions} 
+    <Card  actions={actions}  
           onClick={() =>{navite(`/blog/${product._id}`)
    increaseView({postId: product._id as string})  
         }}
-         style={{ width:"100%", height:"100%" }}>
+         style={{ width:"100%", height:"100%", display:"flex", flexDirection:"column", justifyContent:"space-between"  }}>
       <Card.Meta
   
         title={`${product.title}`} style={{cursor:"pointer"}}
