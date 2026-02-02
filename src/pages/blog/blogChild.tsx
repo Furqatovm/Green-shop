@@ -3,8 +3,8 @@ import {
     MessageOutlined,
     HeartOutlined,
 } from '@ant-design/icons';
-import {  Card, Flex } from 'antd';
-import {  type FC } from 'react';
+import {  Card } from 'antd';
+import React, {   type FC } from 'react';
 import type { BlogPost } from '../../@types/@type';
 import { useNavigate } from 'react-router-dom';
 import {  useIncreaseView } from '../../hook/useQuery/useQueryAction';
@@ -12,6 +12,7 @@ import {  useIncreaseView } from '../../hook/useQuery/useQueryAction';
 interface BlogPostChildren {
   product:BlogPost
 }
+
 
 
 
@@ -32,8 +33,6 @@ const BlogChild:FC<BlogPostChildren> = ({product}) => {
   ];
   const navite =useNavigate()
 const {mutate:increaseView } =useIncreaseView()
-
-
 
   return (
     <Card  actions={actions}  

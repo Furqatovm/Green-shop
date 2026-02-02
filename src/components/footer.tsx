@@ -20,8 +20,8 @@ const Footer = () => {
   return (
    <div>
      <footer className="bg-[#FBFBFB] w-[90%] mx-auto mt-30">
-        <div className="p-4  flex justify-between items-center px-4">
-            <div className="w-[65%] flex justify-between items-center">
+        <div className="p-4  flex justify-between items-center px-4 max-md:flex max-md:flex-col">
+            <div className="w-[65%] flex justify-between items-center max-md:w-full ">
                 <div className="flex flex-col gap-2">
                     <div>
                     <img src={Footerimg1} className="" alt="" />
@@ -51,7 +51,7 @@ const Footer = () => {
                 </div>
 
             </div>
-            <div className="w-[28%] flex flex-col gap-4">
+            <div className="w-[28%] flex flex-col gap-4 max-md:w-full">
                 <h4 className="text-linkColor text-filterText font-bold">Would you like to join newsletters?</h4>
                 <Form onFinish={(email) =>setEmail(email)}>
                     <Form.Item name={"email"}>

@@ -60,7 +60,7 @@ const Blog = () => {
       </div>
       }
 
-      <section className="grid grid-cols-3 gap-7 text-linkColor my-10">
+      <section className="grid grid-cols-3 gap-7 max-md:grid-cols-2 max-sm:grid-cols-1 text-linkColor my-10">
           {
             isLoading  ? 
             <Spin />

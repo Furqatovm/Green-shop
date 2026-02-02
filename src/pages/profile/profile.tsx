@@ -8,11 +8,11 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import { useState } from "react";
-import AccountDetails from "./profileChildren/form";
 import { useReduxDispatch } from "../../hook/useRedux/useredux";
 import { setLogout } from "../../redux/auth-slice";
 import { useNavigate } from "react-router-dom";
 import { clearLocalStorage } from "../../redux/shop-slice";
+import AccountDetails from "./profileChildren/form";
 
 const { Sider, Content } = Layout;
 
@@ -97,7 +97,7 @@ const Profile = () => {
       case "Account Details":
         return <AccountDetails />;
       case "My Products":
-        return <div>List of your products...</div>;
+        return <div>..... coming soon</div>;
       case "Address":
         return <div>Your saved addresses...</div>;
       case "Wishlist":
