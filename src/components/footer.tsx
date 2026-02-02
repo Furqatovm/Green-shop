@@ -121,7 +121,7 @@ const Footer = () => {
 
 
 
-        <div className="grid grid-cols-4 p-5 pt-8 border-b border-[#46A35833] mb-5">
+        <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 p-5 pt-8 border-b border-[#46A35833] mb-5">
             <div className="flex flex-col gap-2">
                 <span className="text-linkColor text-filterChildren font-bold">My Account</span>
                 <span className="text-linkColor text-blog-text-children block">My Account</span>
