@@ -290,6 +290,7 @@ export const useMakeOrder =() =>{
             if(data.message =="success"){
                 toast.success("Buyurtma berildi");
                 dispatch(setProductCheckout())
+                console.log(data)
                 localStorage.setItem("orders", JSON.stringify(data?.data || []) )
             }
         }),

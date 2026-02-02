@@ -11,11 +11,11 @@ const CheckOutModal = () => {
 
     const orders =localStorage.getItem("orders");
 
-    const orderItems = orders ? JSON.parse(orders): []
+    const orderItems = orders ? JSON.parse(orders): null
     console.log(orderItems)
     
       const shipping = 16;
-      const total = orderItems?.extra_shop_info.total
+      const total = orderItems?.extra_shop_info?.total ||0
   return (
     <Modal 
     centered
@@ -55,13 +55,13 @@ const CheckOutModal = () => {
           </div>
           <div style={{ flex: 1, marginLeft: 16 }}>
             <p style={{ fontWeight: "bold", margin: 0 }}>{item.title}</p>
-            <span style={{ color: "gray" }}>SKU:{item._id}</span>
+            <span style={{ color: "gray" }}>SKU:{item._id ||""}</span>
             <br />
           </div>
-          <span style={{ color: "gray" }}>(x{item.counter})</span>
+          <span style={{ color: "gray" }}>(x{item.counter || 0})</span>
 
           <div style={{ flex: "0 0 80px", textAlign: "right" }}>
-            <span style={{ fontWeight: "bold" }}>${item.userPrice}</span>
+            <span style={{ fontWeight: "bold" }}>${item.userPrice || 0}</span>
           </div>
         </div>
       ))}
@@ -71,12 +71,12 @@ const CheckOutModal = () => {
       {/* Shipping and Total */}
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
         <p>Shipping</p>
-        <span style={{ fontWeight: "bold", color: "green" }}>${shipping}</span>
+        <span style={{ fontWeight: "bold", color: "green" }}>${shipping || 0}</span>
       </div>
 
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 16 }}>
         <p>Total</p>
-        <span style={{ fontWeight: "bold", color: "green" }}>${total}</span>
+        <span style={{ fontWeight: "bold", color: "green" }}>${total || 0}</span>
       </div>
 
       <Divider />

@@ -4,11 +4,11 @@ import CheckoutFrom from "./form"
 const ProductCheckout = () => {
   
 
-    
+    const orders =localStorage.getItem("orders");
 
   return (
     <div className="flex gap-8">
-        <CheckOutModal />
+      {orders && <CheckOutModal />}
     <div className="w-[55%]">
         <CheckoutFrom />
     </div>
