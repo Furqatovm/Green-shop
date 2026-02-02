@@ -10,10 +10,10 @@ const HomeBlog = () => {
         <h3 className="text-linkColor text-[30px] font-bold text-center">Our Blog Posts</h3>
         <p className="my-3 text-blogText text-center text-blog-text-children">We are an online plant shop offering a wide range of cheap and trendy plants. </p>
 
-        <div className="grid grid-cols-4 gap-10 my-10">
+        <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1  gap-10 my-10">
             {
                 blogs.map((val:PrototypeDataType) =>{
-                    return  <div key={(Math.random())+(Date.now())} className="shadow-[0px_4px_6px_0px_rgba(0,0,0,0.1)] rounded-sm">
+                    return  <div key={(Math.random())+(Date.now())} className="flex flex-col items-center justify-center shadow-[0px_4px_6px_0px_rgba(0,0,0,0.1)] rounded-sm">
                        <img src={val.img}  className="rounded-t-sm" alt="" />
                     <div className="bg-[#FBFBFB] rounded-b-sm p-4 flex flex-col gap-1 items-start">
                         <span className="text-logoColor text-blog-text-children font-medium">{val.created_at}</span>

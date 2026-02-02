@@ -5,8 +5,8 @@ const Last = () => {
     const info ={
         img:Gul,
     }
-  return (
-    <div className="grid grid-cols-2 gap-15 my-20">
+  return ( 
+    <div className="grid grid-cols-2 max-md:grid-cols-2 max-sm:grid-cols-1 gap-15 my-20">
         <LastCard  information={info}/>
         <LastCard information={info}/>
     </div>

@@ -68,7 +68,7 @@ const FilterPage = () => {
   return (
     <section>
 
-    <div className="my-10   grid grid-cols-[1fr_3.5fr] gap-10">
+    <div className="my-10   grid grid-cols-[1fr_3.5fr] gap-10 max-md:grid-cols-[1fr_2.5fr] max-sm:grid-cols-1">
         <div className=" h-fit bg-[#FBFBFB] ">
             <span className="text-linkColor text-filterText font-bold p-5 block">Category</span>
             <div className="px-7  flex flex-col gap-5">
@@ -132,7 +132,7 @@ const FilterPage = () => {
 
                   {/* Manashu joyidan rasmlar boshlanadi */}
 
-           <div className="grid grid-cols-3 gap-10 my-5 ">
+           <div className="grid grid-cols-3  max-md:grid-cols-2  max-sm:grid-cols-1 gap-10 my-5 ">
            {
             isPeding2||isError2 ||isLoading2 ?
             Array.from({length: 9}).map((_, index) =>{

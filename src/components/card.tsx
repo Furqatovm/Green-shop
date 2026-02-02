@@ -27,7 +27,7 @@ const [hovered, setHovered] =useState<boolean>(false);
                 onMouseEnter={()=>setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
                 >
-                   <div className='h-75 p-4 overflow-hidden'>
+                   <div className='h-75 max-md:h-auto max-sm:h-auto p-4 overflow-hidden'>
                    <img src={product.main_image} className="object-cover w-full hover: transition-transform duration-300 ease-in-out transform hover:scale-105 cursor-pointer " alt="" />
                    </div>
                 <div className={`gap-2 transform transition-transform duration-300 ease-in-out ${hovered ? "-translate-y-5" : "translate-y-10"} flex `}>
