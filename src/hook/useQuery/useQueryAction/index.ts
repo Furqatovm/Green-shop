@@ -289,9 +289,9 @@ export const useMakeOrder =() =>{
         onSuccess:((data) =>{
             if(data.message =="success"){
                 toast.success("Buyurtma berildi");
+                localStorage.setItem("orders", JSON.stringify(data?.data || []) )
                 dispatch(setProductCheckout())
                 console.log(data)
-                localStorage.setItem("orders", JSON.stringify(data?.data || []) )
             }
         }),
 
